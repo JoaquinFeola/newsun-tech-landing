@@ -30,16 +30,16 @@ const criterios = [
 ---
 
 <section id="por-que" class="border-b border-line">
-  <div class="mx-auto max-w-6xl px-5 py-24">
+  <div class="mx-auto max-w-6xl px-5 py-16 md:py-24">
     <SectionHeader number="06" kicker="Justificación" title="Por qué elegimos a los productores rurales." />
 
-    <div class="grid gap-6 md:grid-cols-3">
+    <div class="grid gap-4 md:grid-cols-3 md:gap-6">
       {
         criterios.map((c, i) => (
-          <div class="rounded-lg border border-line border-t-4 border-t-primary bg-white p-7">
+          <div class="rounded-lg border border-line border-t-4 border-t-primary bg-white p-5 sm:p-7">
             <span class="label text-primary-dark">Criterio {i + 1}</span>
-            <h3 class="mt-2 font-display text-2xl font-bold">{c.titulo}</h3>
-            <ul class="mt-5 space-y-3">
+            <h3 class="mt-2 font-display text-xl font-bold sm:text-2xl">{c.titulo}</h3>
+            <ul class="mt-4 space-y-3 sm:mt-5">
               {c.puntos.map((p) => (
                 <li class="flex gap-3 leading-relaxed text-ink-muted">
                   <span class="mt-2 h-2 w-2 shrink-0 bg-primary" />

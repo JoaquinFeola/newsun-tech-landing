@@ -26,21 +26,21 @@ const ficha = [
       </div>
     ))
   }
-  <div class="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-5 py-14 md:gap-14 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-end">
     <div>
       <p class="label mb-6 text-primary">Recuperación de motores eléctricos</p>
       <h1 class="font-display text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl">
         Motores que<br />vuelven a <span class="text-primary">girar</span>.
       </h1>
-      <p class="mt-8 max-w-xl text-lg leading-relaxed text-metal/80">
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-metal/80 md:mt-8 md:text-lg">
         Lavarropas, caminadoras, bombas y ventiladores tienen motores que todavía funcionan. Nosotros los rescatamos de la
         chatarra y las escuelas técnicas de la región los clasifican: los que sirven vuelven a nosotros y los convertimos
         en generadores eólicos para productores rurales, y los que no, se quedan en el taller para que los estudiantes aprendan con
         ellos.
       </p>
-      <div class="mt-10 flex flex-wrap gap-4">
-        <a href="#generador" class="btn-primary">Ver el generador →</a>
-        <a href="#sumate" class="btn-ghost">Tengo un aparato viejo</a>
+      <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4 md:mt-10">
+        <a href="#generador" class="btn-primary justify-center">Ver el generador →</a>
+        <a href="#sumate" class="btn-ghost justify-center">Tengo un aparato viejo</a>
       </div>
     </div>
 
@@ -52,7 +52,7 @@ const ficha = [
       <dl>
         {
           ficha.map((f) => (
-            <div class="grid grid-cols-[7rem_1fr] border-b border-metal/15 px-5 py-4 last:border-0">
+            <div class="grid grid-cols-[6.5rem_1fr] border-b border-metal/15 px-4 py-3 last:border-0 sm:grid-cols-[7rem_1fr] sm:px-5 sm:py-4">
               <dt class="label pt-0.5 text-metal/50">{f.k}</dt>
               <dd class="font-medium">{f.v}</dd>
             </div>

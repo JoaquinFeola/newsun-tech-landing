@@ -11,14 +11,14 @@ const usos = [
 ---
 
 <section id="escuelas" class="border-b border-line bg-paper-deep">
-  <div class="mx-auto grid max-w-6xl gap-14 px-5 py-24 lg:grid-cols-[1fr_1fr]">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 md:gap-14 py-16 md:py-24 lg:grid-cols-[1fr_1fr]">
     <div>
       <SectionHeader number="05" kicker="Impacto social" title="Las escuelas clasifican, y aprenden haciéndolo.">
         Las escuelas técnicas muchas veces no tienen presupuesto para comprar motores de práctica. En el proyecto, ellas
         reciben los aparatos y sus estudiantes diagnostican cada motor con instrumental real. Los que están sanos nos los
         devuelven para que armemos el generador; los que no, se quedan en el taller para seguir aprendiendo con ellos.
       </SectionHeader>
-      <a href="#sumate" data-tab="escuela" class="btn-primary">Soy de una escuela técnica →</a>
+      <a href="#sumate" data-tab="escuela" class="btn-primary w-full justify-center sm:w-auto">Soy de una escuela técnica →</a>
     </div>
 
     <div class="grid content-start gap-4 sm:grid-cols-2">
@@ -32,7 +32,7 @@ const usos = [
       />
       {
         usos.map((u) => (
-          <div class="rounded-lg border border-line bg-paper p-5">
+          <div class="rounded-lg border border-line bg-paper p-4 sm:p-5">
             <span class="mb-3 block h-1.5 w-8 bg-primary" />
             <h3 class="font-display text-lg font-bold">{u.titulo}</h3>
             <p class="mt-1 text-sm leading-relaxed text-ink-muted">{u.texto}</p>

@@ -55,7 +55,7 @@
 @layer components {
   /* Etiqueta tipo ficha técnica */
   .label {
-    @apply font-mono text-xs uppercase tracking-[0.18em];
+    @apply font-mono text-xs uppercase tracking-[0.12em] sm:tracking-[0.18em];
   }
 
   /* Botones: rectos, con borde grueso y sombra "de imprenta" */

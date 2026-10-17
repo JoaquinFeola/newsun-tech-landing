@@ -24,20 +24,20 @@ const pasos = [
 ---
 
 <section id="proceso" class="border-b border-line bg-paper-deep">
-  <div class="mx-auto max-w-6xl px-5 py-24">
+  <div class="mx-auto max-w-6xl px-5 py-16 md:py-24">
     <SectionHeader number="02" kicker="Nuestra propuesta" title="Las escuelas técnicas deciden el destino de cada motor.">
       Nosotros recolectamos los aparatos y las escuelas técnicas de la región se encargan de clasificarlos como parte de
       sus prácticas. Ningún motor vuelve a la chatarra: si está sano, la escuela nos lo devuelve y lo convertimos en
       generador; si tiene una pieza esencial rota, se queda en la escuela como material de aprendizaje.
     </SectionHeader>
 
-    <ol class="grid gap-6 md:grid-cols-3">
+    <ol class="grid gap-4 md:grid-cols-3 md:gap-6">
       {
         pasos.map((p) => (
-          <li class="rounded-lg border border-line bg-paper p-6">
-            <div class="flex items-baseline justify-between gap-3">
+          <li class="rounded-lg border border-line bg-paper p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
               <span class="font-display text-4xl font-extrabold text-primary-dark">{p.n}</span>
-              <span class="label rounded-full border border-line px-3 py-1 text-ink-muted">{p.quien}</span>
+              <span class="label whitespace-nowrap rounded-full border border-line px-3 py-1 text-ink-muted">{p.quien}</span>
             </div>
             <h3 class="mt-3 font-display text-xl font-bold">{p.titulo}</h3>
             <p class="mt-2 leading-relaxed text-ink-muted">{p.texto}</p>
@@ -47,19 +47,19 @@ const pasos = [
     </ol>
 
     <!-- Bifurcación -->
-    <div class="mx-auto my-6 flex flex-col items-center" aria-hidden="true">
-      <div class="h-10 w-0.5 bg-ink"></div>
-      <div class="rounded-lg border border-line bg-primary px-5 py-2 font-mono text-sm font-medium uppercase tracking-wider">
+    <div class="mx-auto my-4 flex flex-col items-center md:my-6" aria-hidden="true">
+      <div class="h-6 w-0.5 bg-ink md:h-10"></div>
+      <div class="rounded-lg border border-line bg-primary px-4 py-2 text-center text-balance font-mono text-xs font-medium uppercase tracking-wider sm:px-5 sm:text-sm">
         La escuela clasifica: ¿el motor está sano?
       </div>
-      <div class="h-10 w-0.5 bg-ink"></div>
+      <div class="h-6 w-0.5 bg-ink md:h-10"></div>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2">
-      <a href="#generador" class="group block rounded-lg border border-line bg-ink p-7 text-metal transition-transform hover:-translate-y-1">
-        <div class="flex items-baseline justify-between gap-3">
+    <div class="grid gap-4 md:grid-cols-2 md:gap-6">
+      <a href="#generador" class="group block rounded-lg border border-line bg-ink p-5 text-metal transition-transform sm:p-7 hover:-translate-y-1">
+        <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
           <span class="label text-primary">Sí · Apto</span>
-          <span class="label rounded-full border border-metal/25 px-3 py-1 text-metal/60">NewSun Tech</span>
+          <span class="label whitespace-nowrap rounded-full border border-metal/25 px-3 py-1 text-metal/60">NewSun Tech</span>
         </div>
         <h3 class="mt-3 font-display text-2xl font-bold">Generador eólico</h3>
         <p class="mt-3 leading-relaxed text-metal/75">
@@ -68,10 +68,10 @@ const pasos = [
         </p>
         <span class="label mt-6 inline-block text-primary group-hover:underline">Ver el generador →</span>
       </a>
-      <a href="#escuelas" class="group block rounded-lg border border-line bg-white p-7 transition-transform hover:-translate-y-1">
-        <div class="flex items-baseline justify-between gap-3">
+      <a href="#escuelas" class="group block rounded-lg border border-line bg-white p-5 transition-transform sm:p-7 hover:-translate-y-1">
+        <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
           <span class="label text-primary-dark">No · Pieza esencial rota</span>
-          <span class="label rounded-full border border-line px-3 py-1 text-ink-muted">Escuela técnica</span>
+          <span class="label whitespace-nowrap rounded-full border border-line px-3 py-1 text-ink-muted">Escuela técnica</span>
         </div>
         <h3 class="mt-3 font-display text-2xl font-bold">Queda en la escuela</h3>
         <p class="mt-3 leading-relaxed text-ink-muted">

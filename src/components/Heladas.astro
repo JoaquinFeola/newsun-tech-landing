@@ -6,7 +6,7 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
 ---
 
 <section id="heladas" class="border-b border-line">
-  <div class="mx-auto max-w-6xl px-5 py-24">
+  <div class="mx-auto max-w-6xl px-5 py-16 md:py-24">
     <SectionHeader number="04" kicker="Caso de uso" title="Alerta temprana de heladas para productores.">
       Una helada puede arruinar una cosecha en una sola noche. Instalamos el generador en el campo, junto a una estación
       que mide el clima y avisa por radio al productor antes de que la temperatura llegue a cero, para que tenga tiempo
@@ -14,8 +14,8 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
     </SectionHeader>
 
     <!-- Diagrama del sistema -->
-    <div class="overflow-x-auto">
-      <div class="grid min-w-[44rem] grid-cols-[1fr_auto_1.3fr_auto_1fr] items-stretch">
+    <div>
+      <div class="grid items-stretch md:grid-cols-[1fr_auto_1.3fr_auto_1fr]">
         <!-- En el campo -->
         <div class="rounded-lg border border-line bg-ink p-5 text-metal">
           <p class="label text-primary">En el campo</p>
@@ -27,9 +27,9 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
           </div>
         </div>
 
-        <div class="flex flex-col items-center justify-center px-2" aria-hidden="true">
-          <span class="label mb-1 text-ink-muted">energía</span>
-          <span class="font-mono text-2xl text-primary-dark">⟶</span>
+        <div class="flex items-center justify-center gap-3 py-3 md:flex-col md:gap-0 md:px-2 md:py-0" aria-hidden="true">
+          <span class="label text-ink-muted md:mb-1">energía</span>
+          <span class="font-mono text-2xl text-primary-dark"><span class="md:hidden">↓</span><span class="hidden md:inline">⟶</span></span>
         </div>
 
         <div class="rounded-lg border border-line bg-white p-5">
@@ -41,9 +41,9 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
           </ul>
         </div>
 
-        <div class="flex flex-col items-center justify-center px-2" aria-hidden="true">
-          <span class="label mb-1 text-ink-muted">radio LoRa</span>
-          <span class="font-mono text-2xl tracking-[-0.2em] text-primary-dark">)))</span>
+        <div class="flex items-center justify-center gap-3 py-3 md:flex-col md:gap-0 md:px-2 md:py-0" aria-hidden="true">
+          <span class="label text-ink-muted md:mb-1">radio LoRa</span>
+          <span class="inline-block rotate-90 font-mono text-2xl tracking-[-0.2em] text-primary-dark md:rotate-0">)))</span>
         </div>
 
         <div class="rounded-lg border border-dashed border-ink/40 bg-paper-deep p-5">
@@ -57,7 +57,7 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
       </div>
     </div>
 
-    <div class="mt-14 grid gap-6 md:grid-cols-2">
+    <div class="mt-10 grid gap-6 md:mt-14 md:grid-cols-2">
       <ImagePlaceholder
         label="Modelo tentativo del generador en el campo"
         src="/modelo-tentativo-generador.jpeg"
@@ -70,7 +70,7 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
       />
     </div>
 
-    <div class="mt-14 grid gap-8 md:grid-cols-3">
+    <div class="mt-10 grid gap-6 md:mt-14 md:grid-cols-3 md:gap-8">
       <div>
         <h3 class="font-display text-xl font-bold">¿Por qué LoRa?</h3>
         <p class="mt-2 leading-relaxed text-ink-muted">

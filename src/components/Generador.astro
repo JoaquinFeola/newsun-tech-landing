@@ -21,14 +21,14 @@ const partes = [
 ---
 
 <section id="generador" class="border-b border-line bg-ink text-metal">
-  <div class="mx-auto max-w-6xl px-5 py-24">
+  <div class="mx-auto max-w-6xl px-5 py-16 md:py-24">
     <SectionHeader number="03" kicker="El producto" title="Un motor de lavarropas, convertido en molino." dark>
       Todo motor eléctrico puede funcionar al revés: si en lugar de darle corriente lo hacemos girar, produce
       electricidad. Diseñamos un aerogenerador pequeño de eje vertical alrededor del motor recuperado: no necesita
       orientarse hacia el viento, así que aprovecha las ráfagas vengan de donde vengan.
     </SectionHeader>
 
-    <div class="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
+    <div class="grid gap-8 md:gap-10 lg:grid-cols-[1.5fr_1fr]">
       <figure>
         <div class="relative aspect-video overflow-hidden rounded-lg border border-metal/40 bg-ink-soft">
           <video
@@ -41,14 +41,14 @@ const partes = [
           >
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>
-          <div id="gen-placeholder" class="bg-hatch absolute inset-0 grid place-items-center text-metal/40">
-            <div class="rounded-md border border-metal/40 bg-ink px-6 py-4 text-center">
+          <div id="gen-placeholder" class="bg-hatch absolute inset-0 bg-ink-soft grid place-items-center text-metal/40">
+            <div class="mx-4 rounded-md border border-metal/40 bg-ink px-4 py-3 text-center sm:px-6 sm:py-4">
               <p class="label text-primary">Video de presentación</p>
               <p class="mt-1 font-mono text-xs">public/video/presentacion.mp4</p>
             </div>
           </div>
         </div>
-        <figcaption class="label mt-3 flex justify-between text-metal/50">
+        <figcaption class="label mt-3 flex flex-wrap justify-between gap-x-4 gap-y-1 text-metal/50">
           <span>Video — Conocé NewSun Tech</span>
           <span>Con sonido</span>
         </figcaption>

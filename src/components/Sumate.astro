@@ -7,19 +7,19 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
 ---
 
 <section id="sumate" class="bg-ink text-metal">
-  <div class="mx-auto grid max-w-6xl gap-14 px-5 py-24 lg:grid-cols-[1fr_1.3fr]">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 md:gap-14 py-16 md:py-24 lg:grid-cols-[1fr_1.3fr]">
     <div>
       <div class="mb-4 flex items-center gap-3 text-primary">
         <span class="label font-medium">07</span>
         <span class="h-0.5 w-10 bg-primary"></span>
         <span class="label">Sumate</span>
       </div>
-      <h2 class="font-display text-3xl font-bold leading-tight md:text-5xl">¿Tenés un aparato viejo que vas a tirar?</h2>
-      <p class="mt-5 text-lg leading-relaxed text-metal/80">
+      <h2 class="font-display text-3xl font-bold leading-tight text-balance md:text-5xl">¿Tenés un aparato viejo que vas a tirar?</h2>
+      <p class="mt-5 text-base leading-relaxed text-metal/80 md:text-lg">
         Antes de dejarlo en la vereda, avisanos. Pasamos a buscarlo y le damos una segunda vida a su motor. Y si sos de
         una escuela técnica, sumate a la red de talleres que clasifican los motores.
       </p>
-      <p class="label mt-10 border-l border-primary/60 pl-4 leading-relaxed text-metal/50">
+      <p class="label mt-8 border-l border-primary/60 pl-4 leading-relaxed text-metal/50">
         Formulario demostrativo:<br />los datos no se envían ni se guardan.
       </p>
     </div>
@@ -30,15 +30,15 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
           role="tab"
           data-tab-btn="donar"
           aria-selected="true"
-          class="tab-btn label border-r border-line px-4 py-4 text-left">Donar un aparato</button
+          class="tab-btn label border-r border-line px-3 py-3.5 text-left sm:px-4 sm:py-4">Donar un aparato</button
         >
-        <button role="tab" data-tab-btn="escuela" aria-selected="false" class="tab-btn label px-4 py-4 text-left"
+        <button role="tab" data-tab-btn="escuela" aria-selected="false" class="tab-btn label px-3 py-3.5 text-left sm:px-4 sm:py-4"
           >Soy escuela técnica</button
         >
       </div>
 
       <!-- Donación de aparato -->
-      <form data-tab-panel="donar" data-mensaje="Coordinaremos con vos el retiro del aparato." class="grid gap-5 p-6 md:p-8 sm:grid-cols-2">
+      <form data-tab-panel="donar" data-mensaje="Coordinaremos con vos el retiro del aparato." class="grid gap-4 p-5 sm:grid-cols-2 sm:gap-5 sm:p-6 md:p-8">
         <label class="grid gap-1.5 sm:col-span-2">
           <span class="label">Nombre y apellido</span>
           <input name="nombre" required class="field" autocomplete="name" placeholder="Ej.: María González" />
@@ -76,14 +76,14 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
           <span class="label">Comentarios (opcional)</span>
           <textarea name="comentarios" rows="3" class="field resize-y" placeholder="Marca, antigüedad, si tiene alguna falla conocida, horario para retirarlo…"></textarea>
         </label>
-        <button type="submit" class="btn-primary justify-self-start sm:col-span-2">Enviar aviso</button>
+        <button type="submit" class="btn-primary justify-center sm:col-span-2 sm:justify-self-start">Enviar aviso</button>
       </form>
 
       <!-- Solicitud de escuela técnica -->
       <form
         data-tab-panel="escuela"
         data-mensaje="Te contactaremos para coordinar la primera entrega de aparatos a tu escuela."
-        class="grid gap-5 p-6 md:p-8 sm:grid-cols-2"
+        class="grid gap-4 p-5 sm:grid-cols-2 sm:gap-5 sm:p-6 md:p-8"
         hidden
       >
         <label class="grid gap-1.5 sm:col-span-2">
@@ -110,7 +110,7 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
           <span class="label">¿Con qué cursos o talleres trabajarían?</span>
           <textarea name="uso" rows="3" required class="field resize-y" placeholder="Ej.: 4.º y 5.º año de electromecánica, en el taller de máquinas eléctricas…"></textarea>
         </label>
-        <button type="submit" class="btn-primary justify-self-start sm:col-span-2">Enviar solicitud</button>
+        <button type="submit" class="btn-primary justify-center sm:col-span-2 sm:justify-self-start">Enviar solicitud</button>
       </form>
     </div>
   </div>
