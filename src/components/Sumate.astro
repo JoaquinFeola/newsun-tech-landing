@@ -25,14 +25,15 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
     </div>
 
     <div class="overflow-hidden rounded-xl border border-metal/30 bg-paper text-ink shadow-2xl shadow-black/30">
-      <div class="grid grid-cols-2 border-b border-line" role="tablist">
+      <div class="relative grid grid-cols-2 border-b border-line" role="tablist">
+        <span class="tab-indicator" aria-hidden="true"></span>
         <button
           role="tab"
           data-tab-btn="donar"
           aria-selected="true"
-          class="tab-btn label border-r border-line px-3 py-3.5 text-left sm:px-4 sm:py-4">Donar un aparato</button
+          class="tab-btn label cursor-pointer border-r border-line px-3 py-3.5 text-left sm:px-4 sm:py-4">Donar un aparato</button
         >
-        <button role="tab" data-tab-btn="escuela" aria-selected="false" class="tab-btn label px-3 py-3.5 text-left sm:px-4 sm:py-4"
+        <button role="tab" data-tab-btn="escuela" aria-selected="false" class="tab-btn label cursor-pointer px-3 py-3.5 text-left sm:px-4 sm:py-4"
           >Soy escuela técnica</button
         >
       </div>
@@ -131,12 +132,64 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
 </dialog>
 
 <style>
-  .tab-btn[aria-selected="true"] {
+  /* Fondo que se desliza bajo la pestaña activa */
+  .tab-indicator {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 50%;
     background: var(--color-ink);
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  [role="tablist"]:has([data-tab-btn="escuela"][aria-selected="true"]) .tab-indicator {
+    transform: translateX(100%);
+  }
+  .tab-btn {
+    position: relative;
+    transition:
+      color 0.3s ease,
+      background-color 0.2s ease,
+      transform 0.1s ease;
+  }
+  .tab-btn[aria-selected="true"] {
     color: var(--color-primary);
   }
   .tab-btn[aria-selected="false"]:hover {
     background: var(--color-paper-deep);
+  }
+  .tab-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Al cambiar de pestaña: el formulario entra desde el lado elegido
+     y sus campos aparecen escalonados */
+  .panel-in {
+    animation: panel-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .panel-in > * {
+    animation: field-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms + 80ms);
+  }
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateX(calc(var(--dir, 1) * 24px));
+    }
+  }
+  @keyframes field-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tab-indicator,
+    .tab-btn {
+      transition: none;
+    }
+    .panel-in,
+    .panel-in > * {
+      animation: none;
+    }
   }
 </style>
 
@@ -146,9 +199,26 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
   const dialog = document.getElementById("recibido") as HTMLDialogElement;
   const msg = document.getElementById("recibido-msg")!;
 
+  const order = Array.from(buttons, (b) => b.dataset.tabBtn!);
+
+  // Índice de cada campo para escalonar su animación de entrada
+  panels.forEach((p) => Array.from(p.children).forEach((c, i) => (c as HTMLElement).style.setProperty("--i", String(i))));
+
   function showTab(name: string) {
+    const current = Array.from(panels).find((p) => !p.hidden)?.dataset.tabPanel;
+    if (current === name) return;
+    const dir = order.indexOf(name) > order.indexOf(current ?? "") ? 1 : -1;
+
     buttons.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tabBtn === name)));
-    panels.forEach((p) => (p.hidden = p.dataset.tabPanel !== name));
+    panels.forEach((p) => {
+      p.hidden = p.dataset.tabPanel !== name;
+      p.classList.remove("panel-in");
+      if (!p.hidden) {
+        p.style.setProperty("--dir", String(dir));
+        void p.offsetWidth; // fuerza un reflow para reiniciar la animación
+        p.classList.add("panel-in");
+      }
+    });
   }
 
   buttons.forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tabBtn!)));
