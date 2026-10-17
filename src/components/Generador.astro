@@ -2,14 +2,14 @@
 import SectionHeader from "./SectionHeader.astro";
 
 /*
- * VIDEO DEL PROTOTIPO
- * Exporten el render/animación del modelo 3D y guárdenlo en:
- *   public/video/generador.mp4        (H.264, idealmente < 15 MB)
- *   public/video/generador-poster.jpg (captura para mostrar antes de reproducir, opcional)
+ * VIDEO DE PRESENTACIÓN
+ * El video final que presenta el producto. Guárdenlo en:
+ *   public/video/presentacion.mp4        (H.264, idealmente < 15 MB)
+ *   public/video/presentacion-poster.jpg (captura para mostrar antes de reproducir, opcional)
  * Mientras el archivo no exista se muestra un recuadro provisorio.
  */
-const VIDEO_SRC = "/video/generador.mp4";
-const POSTER_SRC = "/video/generador-poster.jpg";
+const VIDEO_SRC = "/video/presentacion.mp4";
+const POSTER_SRC = "/video/presentacion-poster.jpg";
 
 const partes = [
   { n: "A", nombre: "Aspas verticales", detalle: "Giran alrededor de un eje vertical y captan el viento venga de donde venga." },
@@ -35,8 +35,6 @@ const partes = [
             id="gen-video"
             class="absolute inset-0 h-full w-full object-cover"
             controls
-            muted
-            loop
             playsinline
             preload="metadata"
             poster={POSTER_SRC}
@@ -45,14 +43,14 @@ const partes = [
           </video>
           <div id="gen-placeholder" class="bg-hatch absolute inset-0 grid place-items-center text-metal/40">
             <div class="rounded-md border border-metal/40 bg-ink px-6 py-4 text-center">
-              <p class="label text-primary">Video del prototipo</p>
-              <p class="mt-1 font-mono text-xs">public/video/generador.mp4</p>
+              <p class="label text-primary">Video de presentación</p>
+              <p class="mt-1 font-mono text-xs">public/video/presentacion.mp4</p>
             </div>
           </div>
         </div>
         <figcaption class="label mt-3 flex justify-between text-metal/50">
-          <span>Fig. 1 — Prototipo del generador</span>
-          <span>Escala no real</span>
+          <span>Video — Conocé NewSun Tech</span>
+          <span>Con sonido</span>
         </figcaption>
       </figure>
 
