@@ -1,0 +1,119 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+
+const sistemas = [
+  {
+    nombre: "Brazo oscilante",
+    resumen:
+      "Un flotador en la punta de un brazo articulado al muelle. La ola lo sube y lo baja, el brazo se balancea y una biela convierte ese vaivén en giro.",
+    ventaja: "Ideal para costas de poca profundidad: aprovecha la subida y la bajada de cada ola.",
+  },
+  {
+    nombre: "Desplazamiento vertical",
+    resumen:
+      "Un flotador que sube y baja entre guías, conectado por una biela a una manivela. El movimiento recto se transforma en un giro continuo.",
+    ventaja: "Un piñón libre y un volante de inercia hacen que el motor gire siempre para el mismo lado.",
+  },
+];
+---
+
+<section id="undimotriz" class="border-b border-line bg-ink text-metal">
+  <div class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <SectionHeader number="05" kicker="Segunda solución" title="El mismo motor, movido por las olas." dark>
+      En la costa, el viento no es la única fuerza disponible. Montado sobre un muelle, el motor recuperado puede girar
+      con el subir y bajar del mar: es energía undimotriz. Probamos dos mecanismos simples, armados con piezas
+      recicladas, que transforman el vaivén del agua en un giro continuo.
+    </SectionHeader>
+
+    <div class="grid gap-6 md:grid-cols-2 md:gap-8">
+      {
+        sistemas.map((s, i) => (
+          <figure class="flex flex-col rounded-lg border border-metal/30 bg-ink-soft p-5 md:p-6">
+            <div class="text-metal">
+              {i === 0 ? (
+                <svg
+                  viewBox="0 0 320 200"
+                  class="h-auto w-full"
+                  role="img"
+                  aria-label="Esquema del brazo oscilante: un brazo articulado al muelle sostiene un flotador sobre la ola; una biela convierte el balanceo en giro de una manivela, con el motor oculto detrás sobre el mismo eje"
+                >
+                  <path d="M0 140 Q20 132 40 140 T80 140 T120 140 T160 140 T200 140 T240 140 T280 140 T320 140 V200 H0Z" fill="currentColor" opacity="0.08" />
+                  <path d="M0 140 Q20 132 40 140 T80 140 T120 140 T160 140 T200 140 T240 140 T280 140 T320 140" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+                  <rect x="4" y="48" width="100" height="12" fill="currentColor" opacity="0.35" />
+                  <line x1="34" y1="60" x2="34" y2="200" stroke="currentColor" stroke-opacity="0.35" stroke-width="6" />
+                  <path d="M82 48 L87 26 L97 26 L102 48Z" fill="currentColor" opacity="0.35" />
+                  <circle cx="92" cy="24" r="16" fill="var(--color-ink-soft)" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="92" cy="24" r="11" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.2" stroke-dasharray="3 2.5" />
+                  <circle cx="92" cy="24" r="3" fill="currentColor" />
+                  <line x1="112" y1="79" x2="107" y2="30" class="stroke-primary" stroke-width="3" stroke-linecap="round" />
+                  <circle cx="107" cy="30" r="3.5" fill="var(--color-ink)" class="stroke-primary" stroke-width="2" />
+                  <line x1="100" y1="16" x2="124" y2="16" stroke="currentColor" stroke-opacity="0.6" stroke-width="1" />
+                  <text x="128" y="19" class="fill-current font-mono" font-size="9" opacity="0.7">motor (detrás)</text>
+                  <text x="72" y="20" text-anchor="end" class="fill-current font-mono" font-size="9" opacity="0.7">manivela →</text>
+                  <line x1="60" y1="60" x2="235" y2="122" class="stroke-primary" stroke-width="6" stroke-linecap="round" />
+                  <circle cx="60" cy="60" r="5" fill="var(--color-ink)" class="stroke-primary" stroke-width="2" />
+                  <circle cx="112" cy="79" r="3" fill="var(--color-ink)" class="stroke-primary" stroke-width="2" />
+                  <path d="M200 128 h70 a35 24 0 0 1 -70 0z" class="fill-primary" opacity="0.9" />
+                  <line x1="235" y1="122" x2="235" y2="128" class="stroke-primary" stroke-width="4" />
+                  <path d="M296 108 v40 M290 114 l6 -6 6 6 M290 142 l6 6 6 -6" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <text x="118" y="60" class="fill-current font-mono" font-size="9" opacity="0.7">← biela</text>
+                  <text x="150" y="112" class="fill-current font-mono" font-size="9" opacity="0.7">brazo</text>
+                  <text x="208" y="178" class="fill-current font-mono" font-size="9" opacity="0.7">flotador</text>
+                  <text x="6" y="44" class="fill-current font-mono" font-size="9" opacity="0.7">muelle</text>
+                </svg>
+              ) : (
+                <svg
+                  viewBox="0 0 320 200"
+                  class="h-auto w-full"
+                  role="img"
+                  aria-label="Esquema del desplazamiento vertical: un flotador sube y baja entre guías y, mediante una biela, hace girar una manivela; detrás de ella, sobre el mismo eje, quedan ocultos el piñón libre, el volante y el motor"
+                >
+                  <path d="M0 140 Q20 132 40 140 T80 140 T120 140 T160 140 T200 140 T240 140 T280 140 T320 140 V200 H0Z" fill="currentColor" opacity="0.08" />
+                  <path d="M0 140 Q20 132 40 140 T80 140 T120 140 T160 140 T200 140 T240 140 T280 140 T320 140" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+                  <path d="M116 80 V196 M124 80 V196 M196 80 V196 M204 80 V196" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5" />
+                  <rect x="128" y="118" width="64" height="32" rx="6" class="fill-primary" opacity="0.9" />
+                  <line x1="160" y1="118" x2="177" y2="65" class="stroke-primary" stroke-width="3" stroke-linecap="round" />
+                  <circle cx="160" cy="48" r="24" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="160" cy="48" r="3" fill="currentColor" />
+                  <circle cx="177" cy="65" r="3.5" fill="var(--color-ink)" class="stroke-primary" stroke-width="2" />
+                  <path d="M178 22 a28 28 0 0 1 8 14" fill="none" class="stroke-primary" stroke-width="1.5" />
+                  <path d="M181 33 l5 4 1 -6" fill="none" class="stroke-primary" stroke-width="1.5" />
+                  <circle cx="160" cy="48" r="16" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.2" stroke-dasharray="3 2.5" />
+                  <line x1="172" y1="42" x2="205" y2="42" stroke="currentColor" stroke-opacity="0.6" stroke-width="1" />
+                  <text x="209" y="39" class="fill-current font-mono" font-size="9" opacity="0.7">motor + piñón</text>
+                  <text x="209" y="51" class="fill-current font-mono" font-size="9" opacity="0.7">+ volante (detrás)</text>
+                  <text x="60" y="44" text-anchor="end" class="fill-current font-mono" font-size="9" opacity="0.7">manivela →</text>
+                  <text x="110" y="96" text-anchor="end" class="fill-current font-mono" font-size="9" opacity="0.7">biela →</text>
+                  <text x="10" y="178" class="fill-current font-mono" font-size="9" opacity="0.7">guías ↔ flotador</text>
+                </svg>
+              )}
+            </div>
+            <figcaption class="mt-5 flex flex-1 flex-col border-t border-metal/20 pt-5">
+              <p class="label text-primary">Sistema {i + 1}</p>
+              <h3 class="mt-2 font-display text-xl font-bold">{s.nombre}</h3>
+              <p class="mt-2 leading-relaxed text-metal/75">{s.resumen}</p>
+              <p class="mt-4 text-sm leading-relaxed text-metal/60">{s.ventaja}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
+      <div>
+        <h3 class="font-display text-xl font-bold">¿Para qué sirve?</h3>
+        <p class="mt-2 leading-relaxed text-metal/70">
+          Para iluminar muelles y paseos costeros con energía limpia, bajando el gasto eléctrico de la infraestructura
+          pública.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-display text-xl font-bold">El desafío: el salitre</h3>
+        <p class="mt-2 leading-relaxed text-metal/70">
+          El agua de mar corroe todo. Por eso el motor va encapsulado en una caja estanca y los engranajes llevan grasa
+          náutica.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
