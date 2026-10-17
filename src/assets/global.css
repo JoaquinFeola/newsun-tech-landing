@@ -61,7 +61,7 @@
   /* Botones: rectos, con borde grueso y sombra "de imprenta" */
   .btn-primary,
   .btn-ghost {
-    @apply inline-flex items-center gap-2 border-2 px-5 py-3 font-mono text-sm font-medium uppercase tracking-wider transition-transform duration-150;
+    @apply inline-flex items-center gap-2 rounded-md border px-5 py-3 font-mono text-sm font-medium uppercase tracking-wider transition-all duration-150;
   }
   .btn-primary:hover,
   .btn-ghost:hover {
@@ -72,11 +72,14 @@
     transform: translate(0, 0);
   }
   .btn-primary {
-    @apply border-ink bg-primary text-ink;
-    box-shadow: 4px 4px 0 var(--color-ink);
+    @apply border-primary-dark bg-primary text-ink;
+    box-shadow: 0 2px 0 var(--color-primary-dark);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 4px 0 var(--color-primary-dark);
   }
   .btn-ghost {
-    @apply border-metal text-metal;
+    @apply border-metal/50 text-metal;
   }
   .btn-ghost:hover {
     @apply bg-metal text-ink;
@@ -84,10 +87,40 @@
 
   /* Campos de formulario */
   .field {
-    @apply w-full border-2 border-ink bg-white px-3 py-2.5 text-ink outline-none transition-shadow;
+    @apply w-full rounded-md border border-ink/25 bg-white px-3 py-2.5 text-ink outline-none transition-shadow;
   }
+  .field::placeholder {
+    @apply text-ink-muted/60;
+  }
+  .field:hover:not(:focus) {
+    @apply border-ink/45;
+  }
+
+  /* Select con flecha propia: envolver el <select class="field"> en <span class="select-wrap"> */
+  .select-wrap {
+    @apply relative block;
+  }
+  .select-wrap::after {
+    content: "";
+    @apply pointer-events-none absolute top-1/2 right-3.5 h-2 w-2 -translate-y-3/4 rotate-45 border-r-2 border-b-2 border-ink-muted transition-transform;
+  }
+  .select-wrap:focus-within::after {
+    @apply -translate-y-1/4 -rotate-135 border-primary-dark;
+  }
+  .select-wrap select {
+    @apply cursor-pointer appearance-none pr-10;
+  }
+  /* Opción vacía seleccionada → se ve como placeholder */
+  .select-wrap select:has(option[value=""]:checked) {
+    @apply text-ink-muted/60;
+  }
+  .select-wrap option {
+    @apply bg-white text-ink;
+  }
+
   .field:focus {
-    box-shadow: 4px 4px 0 var(--color-primary);
+    @apply border-primary-dark;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 35%, transparent);
   }
 
   /* Texturas sobrias */

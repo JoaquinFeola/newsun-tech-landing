@@ -2,7 +2,7 @@
 /*
  * Logo provisorio (engranaje + rayo) dibujado con los tokens de marca.
  * Cuando tengan el archivo definitivo, guárdenlo en src/assets/logo.svg
- * y reemplacen el <svg> por: <img src={logo.src} alt="NewSun" class={cls} />
+ * y reemplacen el <svg> por: <img src={logo.src} alt="NewSun Tech" class={cls} />
  */
 interface Props {
   class?: string;
@@ -12,7 +12,7 @@ const { class: cls = "h-10 w-10" } = Astro.props;
 const teeth = Array.from({ length: 8 }, (_, i) => i * 45);
 ---
 
-<svg viewBox="0 0 64 64" class={cls} role="img" aria-label="NewSun">
+<svg viewBox="0 0 64 64" class={cls} role="img" aria-label="NewSun Tech">
   <rect width="64" height="64" fill="var(--brand-graphite)" />
   <g fill="var(--brand-steel)">
     {teeth.map((deg) => <rect x="28" y="6" width="8" height="10" transform={`rotate(${deg} 32 32)`} />)}

@@ -3,15 +3,15 @@ import Logo from "./Logo.astro";
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t-2 border-primary bg-ink text-metal">
+<footer class="border-t border-primary bg-ink text-metal">
   <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between">
     <div class="flex items-center gap-3">
       <Logo class="h-9 w-9" />
       <div>
-        <p class="font-display text-lg font-bold">New<span class="text-primary">Sun</span></p>
+        <p class="font-display text-lg font-bold">New<span class="text-primary">Sun</span> <span class="font-medium text-metal/70">Tech</span></p>
         <p class="text-sm text-metal/60">Motores recuperados, energía para el campo.</p>
       </div>
     </div>
-    <p class="label text-metal/50">© {year} NewSun · Proyecto educativo</p>
+    <p class="label text-metal/50">© {year} NewSun Tech · Proyecto educativo</p>
   </div>
 </footer>

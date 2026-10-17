@@ -12,25 +12,25 @@ const VIDEO_SRC = "/video/generador.mp4";
 const POSTER_SRC = "/video/generador-poster.jpg";
 
 const partes = [
-  { n: "A", nombre: "Palas", detalle: "Impresas en 3D. Captan el viento y hacen girar el eje." },
+  { n: "A", nombre: "Aspas verticales", detalle: "Giran alrededor de un eje vertical y captan el viento venga de donde venga." },
   { n: "B", nombre: "Motor recuperado", detalle: "Funciona al revés: al girar, genera electricidad." },
-  { n: "C", nombre: "Góndola y cola", detalle: "Carcasa impresa en 3D que protege el motor y lo orienta al viento." },
+  { n: "C", nombre: "Eje y estructura", detalle: "Sostienen el rotor y transmiten el giro de las aspas al motor." },
   { n: "D", nombre: "Rectificador y regulador", detalle: "Convierten la energía y cuidan la carga de la batería." },
   { n: "E", nombre: "Batería", detalle: "Almacena la energía para cuando no hay viento." },
 ];
 ---
 
-<section id="generador" class="border-b-2 border-ink bg-ink text-metal">
+<section id="generador" class="border-b border-line bg-ink text-metal">
   <div class="mx-auto max-w-6xl px-5 py-24">
     <SectionHeader number="03" kicker="El producto" title="Un motor de lavarropas, convertido en molino." dark>
       Todo motor eléctrico puede funcionar al revés: si en lugar de darle corriente lo hacemos girar, produce
-      electricidad. Diseñamos un aerogenerador pequeño alrededor del motor recuperado, con piezas impresas en 3D que
-      cualquiera puede reproducir.
+      electricidad. Diseñamos un aerogenerador pequeño de eje vertical alrededor del motor recuperado: no necesita
+      orientarse hacia el viento, así que aprovecha las ráfagas vengan de donde vengan.
     </SectionHeader>
 
     <div class="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
       <figure>
-        <div class="relative aspect-video border-2 border-metal/40 bg-ink-soft">
+        <div class="relative aspect-video overflow-hidden rounded-lg border border-metal/40 bg-ink-soft">
           <video
             id="gen-video"
             class="absolute inset-0 h-full w-full object-cover"
@@ -44,25 +44,25 @@ const partes = [
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>
           <div id="gen-placeholder" class="bg-hatch absolute inset-0 grid place-items-center text-metal/40">
-            <div class="border-2 border-metal/40 bg-ink px-6 py-4 text-center">
+            <div class="rounded-md border border-metal/40 bg-ink px-6 py-4 text-center">
               <p class="label text-primary">Video del prototipo</p>
               <p class="mt-1 font-mono text-xs">public/video/generador.mp4</p>
             </div>
           </div>
         </div>
         <figcaption class="label mt-3 flex justify-between text-metal/50">
-          <span>Fig. 1 — Modelo 3D del prototipo</span>
+          <span>Fig. 1 — Prototipo del generador</span>
           <span>Escala no real</span>
         </figcaption>
       </figure>
 
       <div>
         <h3 class="label mb-4 text-primary">Partes del generador</h3>
-        <ul class="border-t-2 border-metal/30">
+        <ul class="border-t border-metal/30">
           {
             partes.map((p) => (
               <li class="flex gap-4 border-b border-metal/15 py-4">
-                <span class="grid h-8 w-8 shrink-0 place-items-center border-2 border-primary font-mono text-sm text-primary">
+                <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-primary font-mono text-sm text-primary">
                   {p.n}
                 </span>
                 <div>

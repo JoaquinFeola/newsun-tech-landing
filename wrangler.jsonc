@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "newsun-tech",
+  "compatibility_date": "2026-10-01",
+  // Sitio 100 % estático: Workers sirve directamente la carpeta que genera `astro build`
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    {
+      "pattern": "newsun.altamaquina.com",
+      "custom_domain": true
+    }
+  ]
+}

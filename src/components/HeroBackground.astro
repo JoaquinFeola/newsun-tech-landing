@@ -1,0 +1,131 @@
+---
+/*
+ * Fondo decorativo del hero. Variantes:
+ *   "aspas"      → viento + rotor de eje vertical visto desde arriba, con un halo ámbar
+ *   "viento"     → solo las corrientes de viento
+ *   "cuadricula" → la cuadrícula original
+ */
+export type Fondo = "aspas" | "viento" | "cuadricula";
+interface Props {
+  variante?: Fondo;
+}
+const { variante = "aspas" } = Astro.props;
+
+const aspas = [0, 120, 240];
+const anillos = [120, 190, 260, 330];
+
+/*
+ * Corrientes de viento: cada línea es una onda suave. Sobre algunas viaja
+ * una ráfaga (un trazo corto que se desplaza de izquierda a derecha).
+ * pathLength="1000" normaliza el largo para que los guiones sean parejos.
+ */
+const corrientes = Array.from({ length: 11 }, (_, i) => {
+  const y = 40 + i * 55;
+  const a = 16 + ((i * 7) % 4) * 9;
+  return {
+    d: `M-100 ${y} C 200 ${y - a}, 420 ${y + a}, 720 ${y} S 1200 ${y - a}, 1560 ${y + a / 2}`,
+    rafaga: i % 2 === 0 || i === 5,
+    ambar: i === 3 || i === 7,
+    duracion: 5 + ((i * 3) % 6), // 5–10 s, así no se mueven todas juntas
+    retraso: -((i * 1.7) % 8),
+    largo: 50 + ((i * 13) % 70),
+  };
+});
+---
+
+<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+  {variante === "cuadricula" && <div class="bg-grid absolute inset-0" />}
+
+  {
+    (variante === "aspas" || variante === "viento") && (
+      <svg viewBox="0 0 1440 620" preserveAspectRatio="none" class="viento absolute inset-0 h-full w-full">
+        {corrientes.map((c) => (
+          <>
+            <path
+              d={c.d}
+              fill="none"
+              stroke="var(--brand-steel)"
+              stroke-opacity="0.07"
+              vector-effect="non-scaling-stroke"
+            />
+            {c.rafaga && (
+              <path
+                d={c.d}
+                pathLength="1000"
+                fill="none"
+                stroke={c.ambar ? "var(--brand-amber)" : "var(--brand-steel)"}
+                stroke-opacity={c.ambar ? 0.55 : 0.28}
+                stroke-width={c.ambar ? 1.6 : 1.2}
+                stroke-linecap="round"
+                stroke-dasharray={`${c.largo} ${1000 - c.largo}`}
+                vector-effect="non-scaling-stroke"
+                class="rafaga"
+                style={{ animationDuration: `${c.duracion}s`, animationDelay: `${c.retraso}s` }}
+              />
+            )}
+          </>
+        ))}
+      </svg>
+    )
+  }
+
+  {
+    variante === "aspas" && (
+      <>
+        <div class="glow absolute -right-40 top-1/2 h-[46rem] w-[46rem] -translate-y-1/2 rounded-full" />
+        <svg viewBox="-400 -400 800 800" class="absolute -right-56 top-1/2 h-[52rem] w-[52rem] -translate-y-1/2 opacity-[0.16]">
+          <g fill="none" stroke="var(--brand-steel)">
+            {anillos.map((r, i) => <circle r={r} stroke-width="1" stroke-dasharray={i % 2 ? "2 10" : undefined} />)}
+          </g>
+          <g class="rotor">
+            {/* Disco que sostiene las aspas */}
+            <circle r="300" fill="none" stroke="var(--brand-steel)" stroke-width="3" />
+            {/* Aspas curvas (cangilones) vistas desde arriba, del eje hacia el borde */}
+            {aspas.map((deg) => (
+              <path d="M0 0 A150 150 0 0 1 0 -300 A190 190 0 0 0 0 0 Z" fill="var(--brand-steel)" transform={`rotate(${deg})`} />
+            ))}
+            <circle r="30" fill="var(--brand-steel)" />
+            <circle r="11" fill="var(--brand-amber)" />
+          </g>
+        </svg>
+      </>
+    )
+  }
+</div>
+
+<style>
+  .glow {
+    background: radial-gradient(circle, color-mix(in oklab, var(--brand-amber) 16%, transparent) 0%, transparent 62%);
+  }
+  .rotor {
+    animation: girar 28s linear infinite;
+  }
+  .rafaga {
+    animation-name: soplar;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  /* El viento se desvanece hacia los bordes para no cortar en seco */
+  .viento {
+    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  }
+  @keyframes girar {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes soplar {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rotor,
+    .rafaga {
+      animation: none;
+    }
+  }
+</style>

@@ -1,10 +1,11 @@
 ---
 import SectionHeader from "./SectionHeader.astro";
+import ImagePlaceholder from "./ImagePlaceholder.astro";
 
 const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
 ---
 
-<section id="heladas" class="border-b-2 border-ink">
+<section id="heladas" class="border-b border-line">
   <div class="mx-auto max-w-6xl px-5 py-24">
     <SectionHeader number="04" kicker="Caso de uso" title="Alerta temprana de heladas para productores.">
       Una helada puede arruinar una cosecha en una sola noche. Instalamos el generador en el campo, junto a una estación
@@ -16,7 +17,7 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
     <div class="overflow-x-auto">
       <div class="grid min-w-[44rem] grid-cols-[1fr_auto_1.3fr_auto_1fr] items-stretch">
         <!-- En el campo -->
-        <div class="border-2 border-ink bg-ink p-5 text-metal">
+        <div class="rounded-lg border border-line bg-ink p-5 text-metal">
           <p class="label text-primary">En el campo</p>
           <p class="mt-3 font-display text-lg font-bold">Generador eólico</p>
           <p class="mt-1 text-sm text-metal/70">+ regulador de carga</p>
@@ -31,12 +32,12 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
           <span class="font-mono text-2xl text-primary-dark">⟶</span>
         </div>
 
-        <div class="border-2 border-ink bg-white p-5">
+        <div class="rounded-lg border border-line bg-white p-5">
           <p class="label text-primary-dark">Nodo emisor</p>
           <p class="mt-3 font-display text-lg font-bold">ESP32 + módulo LoRa</p>
           <p class="mt-1 text-sm text-ink-muted">Mide cada pocos minutos y envía el dato por radio.</p>
           <ul class="mt-4 flex flex-wrap gap-2">
-            {sensores.map((s) => <li class="label border border-ink px-2 py-1">{s}</li>)}
+            {sensores.map((s) => <li class="label rounded-full border border-line px-3 py-1">{s}</li>)}
           </ul>
         </div>
 
@@ -45,7 +46,7 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
           <span class="font-mono text-2xl tracking-[-0.2em] text-primary-dark">)))</span>
         </div>
 
-        <div class="border-2 border-dashed border-ink bg-paper-deep p-5">
+        <div class="rounded-lg border border-dashed border-ink/40 bg-paper-deep p-5">
           <p class="label text-ink-muted">En la casa</p>
           <p class="mt-3 font-display text-lg font-bold">Receptor</p>
           <p class="mt-1 text-sm text-ink-muted">ESP32 + LoRa con pantalla y alarma sonora.</p>
@@ -54,6 +55,15 @@ const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
           </p>
         </div>
       </div>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+      <ImagePlaceholder label="Estación instalada en el campo" hint="Generador y nodo emisor junto al cultivo" />
+      <ImagePlaceholder
+        label="Cultivo afectado por helada"
+        src="/cultivo-helada.jpeg"
+        alt="Hojas de un cultivo cubiertas de escarcha al amanecer"
+      />
     </div>
 
     <div class="mt-14 grid gap-8 md:grid-cols-3">

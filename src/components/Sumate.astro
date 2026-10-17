@@ -17,20 +17,20 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
       <h2 class="font-display text-3xl font-bold leading-tight md:text-5xl">¿Tenés un aparato viejo que vas a tirar?</h2>
       <p class="mt-5 text-lg leading-relaxed text-metal/80">
         Antes de dejarlo en la vereda, avisanos. Pasamos a buscarlo y le damos una segunda vida a su motor. Y si sos de
-        una escuela técnica, contanos qué necesitan para sus talleres.
+        una escuela técnica, sumate a la red de talleres que clasifican los motores.
       </p>
-      <p class="label mt-10 border-l-2 border-primary/60 pl-4 leading-relaxed text-metal/50">
+      <p class="label mt-10 border-l border-primary/60 pl-4 leading-relaxed text-metal/50">
         Formulario demostrativo:<br />los datos no se envían ni se guardan.
       </p>
     </div>
 
-    <div class="border-2 border-metal/40 bg-paper text-ink">
-      <div class="grid grid-cols-2 border-b-2 border-ink" role="tablist">
+    <div class="overflow-hidden rounded-xl border border-metal/30 bg-paper text-ink shadow-2xl shadow-black/30">
+      <div class="grid grid-cols-2 border-b border-line" role="tablist">
         <button
           role="tab"
           data-tab-btn="donar"
           aria-selected="true"
-          class="tab-btn label border-r-2 border-ink px-4 py-4 text-left">Donar un aparato</button
+          class="tab-btn label border-r border-line px-4 py-4 text-left">Donar un aparato</button
         >
         <button role="tab" data-tab-btn="escuela" aria-selected="false" class="tab-btn label px-4 py-4 text-left"
           >Soy escuela técnica</button
@@ -41,34 +41,40 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
       <form data-tab-panel="donar" data-mensaje="Coordinaremos con vos el retiro del aparato." class="grid gap-5 p-6 md:p-8 sm:grid-cols-2">
         <label class="grid gap-1.5 sm:col-span-2">
           <span class="label">Nombre y apellido</span>
-          <input name="nombre" required class="field" autocomplete="name" />
+          <input name="nombre" required class="field" autocomplete="name" placeholder="Ej.: María González" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Teléfono o email</span>
-          <input name="contacto" required class="field" />
+          <input name="contacto" required class="field" placeholder="Ej.: 11 2345-6789 o maria@mail.com" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Localidad</span>
-          <input name="localidad" required class="field" />
+          <input name="localidad" required class="field" placeholder="Ej.: Luján" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Tipo de aparato</span>
-          <select name="aparato" required class="field">
-            <option value="">Elegí una opción</option>
-            {aparatos.map((a) => <option>{a}</option>)}
-          </select>
+          <span class="select-wrap">
+            <select name="aparato" required class="field">
+              <option value="" disabled selected hidden>Elegí una opción</option>
+              {aparatos.map((a) => <option>{a}</option>)}
+            </select>
+          </span>
         </label>
         <label class="grid gap-1.5">
           <span class="label">¿Todavía enciende?</span>
-          <select name="estado" class="field">
-            <option>No sé</option>
-            <option>Sí</option>
-            <option>No</option>
-          </select>
+          <span class="select-wrap">
+            <select name="estado" class="field">
+              <option value="" selected>Elegí una opción</option>
+              <option>Sí, funciona</option>
+              <option>Enciende pero falla</option>
+              <option>No enciende</option>
+              <option>No sé</option>
+            </select>
+          </span>
         </label>
         <label class="grid gap-1.5 sm:col-span-2">
           <span class="label">Comentarios (opcional)</span>
-          <textarea name="comentarios" rows="3" class="field resize-y"></textarea>
+          <textarea name="comentarios" rows="3" class="field resize-y" placeholder="Marca, antigüedad, si tiene alguna falla conocida, horario para retirarlo…"></textarea>
         </label>
         <button type="submit" class="btn-primary justify-self-start sm:col-span-2">Enviar aviso</button>
       </form>
@@ -76,33 +82,33 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
       <!-- Solicitud de escuela técnica -->
       <form
         data-tab-panel="escuela"
-        data-mensaje="Te contactaremos cuando tengamos motores disponibles para tu escuela."
+        data-mensaje="Te contactaremos para coordinar la primera entrega de aparatos a tu escuela."
         class="grid gap-5 p-6 md:p-8 sm:grid-cols-2"
         hidden
       >
         <label class="grid gap-1.5 sm:col-span-2">
           <span class="label">Nombre de la escuela</span>
-          <input name="escuela" required class="field" />
+          <input name="escuela" required class="field" placeholder="Ej.: E.E.S.T. N.º 1 &quot;Mariano Moreno&quot;" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Persona de contacto</span>
-          <input name="responsable" required class="field" autocomplete="name" />
+          <input name="responsable" required class="field" autocomplete="name" placeholder="Ej.: Prof. Juan Pérez" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Email</span>
-          <input name="email" type="email" required class="field" autocomplete="email" />
+          <input name="email" type="email" required class="field" autocomplete="email" placeholder="taller@escuela.edu.ar" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Localidad</span>
-          <input name="localidad" required class="field" />
+          <input name="localidad" required class="field" placeholder="Ej.: Luján" />
         </label>
         <label class="grid gap-1.5">
           <span class="label">Cantidad aproximada</span>
-          <input name="cantidad" type="number" min="1" class="field" />
+          <input name="cantidad" type="number" min="1" class="field" placeholder="Ej.: 5" />
         </label>
         <label class="grid gap-1.5 sm:col-span-2">
-          <span class="label">¿Para qué los usarían?</span>
-          <textarea name="uso" rows="3" required class="field resize-y"></textarea>
+          <span class="label">¿Con qué cursos o talleres trabajarían?</span>
+          <textarea name="uso" rows="3" required class="field resize-y" placeholder="Ej.: 4.º y 5.º año de electromecánica, en el taller de máquinas eléctricas…"></textarea>
         </label>
         <button type="submit" class="btn-primary justify-self-start sm:col-span-2">Enviar solicitud</button>
       </form>
@@ -110,9 +116,9 @@ const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "He
   </div>
 </section>
 
-<dialog id="recibido" class="m-auto w-[min(28rem,calc(100%-2rem))] border-2 border-ink bg-paper p-0 text-ink backdrop:bg-ink/70">
-  <div class="flex items-center gap-3 border-b-2 border-ink bg-primary px-6 py-3">
-    <span class="grid h-6 w-6 place-items-center border-2 border-ink bg-paper font-mono text-sm">✓</span>
+<dialog id="recibido" class="m-auto w-[min(28rem,calc(100%-2rem))] overflow-hidden rounded-xl border border-ink bg-paper p-0 text-ink backdrop:bg-ink/70">
+  <div class="flex items-center gap-3 border-b border-line bg-primary px-6 py-3">
+    <span class="grid h-6 w-6 place-items-center rounded-full border border-ink bg-paper font-mono text-sm">✓</span>
     <span class="label font-medium">Recibido</span>
   </div>
   <div class="p-6">

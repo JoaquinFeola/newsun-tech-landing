@@ -6,7 +6,7 @@ const criterios = [
     titulo: "Viabilidad técnica",
     puntos: [
       "Motores disponibles gratis en puntos limpios.",
-      "Piezas impresas en 3D, fáciles de reemplazar.",
+      "Diseño de eje vertical: sin mecanismo para orientarse al viento.",
       "Electrónica de bajo costo y amplia documentación (ESP32, LoRa).",
     ],
   },
@@ -29,14 +29,14 @@ const criterios = [
 ];
 ---
 
-<section id="por-que" class="border-b-2 border-ink">
+<section id="por-que" class="border-b border-line">
   <div class="mx-auto max-w-6xl px-5 py-24">
     <SectionHeader number="06" kicker="Justificación" title="Por qué elegimos a los productores rurales." />
 
-    <div class="grid gap-0.5 border-2 border-ink bg-ink md:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-3">
       {
         criterios.map((c, i) => (
-          <div class="bg-white p-7">
+          <div class="rounded-lg border border-line border-t-4 border-t-primary bg-white p-7">
             <span class="label text-primary-dark">Criterio {i + 1}</span>
             <h3 class="mt-2 font-display text-2xl font-bold">{c.titulo}</h3>
             <ul class="mt-5 space-y-3">

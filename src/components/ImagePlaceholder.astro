@@ -1,0 +1,51 @@
+---
+/*
+ * Lugar reservado para una foto. Cuando la tengan, pásenla por `src`
+ * (por ejemplo una imagen importada desde src/assets o una ruta de /public)
+ * y se muestra en lugar del recuadro provisorio.
+ */
+interface Props {
+  label: string;
+  hint?: string;
+  src?: string;
+  alt?: string;
+  ratio?: string;
+  dark?: boolean;
+  class?: string;
+}
+const { label, hint, src, alt = label, ratio = "4 / 3", dark = false, class: cls = "" } = Astro.props;
+---
+
+<figure class={cls}>
+  {
+    src ? (
+      <img
+        src={src}
+        alt={alt}
+        class="w-full rounded-lg border border-line object-cover"
+        style={{ aspectRatio: ratio }}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <div
+        class:list={[
+          "bg-hatch grid place-items-center rounded-lg border border-dashed",
+          dark ? "border-metal/30 bg-ink-soft text-metal/30" : "border-ink/25 bg-paper-deep text-ink/20",
+        ]}
+        style={{ aspectRatio: ratio }}
+      >
+        <div class:list={["flex flex-col items-center gap-2 px-4 text-center", dark ? "text-metal/60" : "text-ink-muted"]}>
+          <svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <circle cx="9" cy="10" r="1.6"></circle>
+            <path d="M21 16l-5-5-8 8"></path>
+          </svg>
+          <span class="label">Foto</span>
+          {hint && <span class="text-xs">{hint}</span>}
+        </div>
+      </div>
+    )
+  }
+  <figcaption class:list={["label mt-3", dark ? "text-metal/50" : "text-ink-muted"]}>{label}</figcaption>
+</figure>

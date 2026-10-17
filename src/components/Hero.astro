@@ -1,14 +1,32 @@
 ---
+import HeroBackground, { type Fondo } from "./HeroBackground.astro";
+
+interface Props {
+  fondo?: Fondo;
+}
+const { fondo = "aspas" } = Astro.props;
+
+// En desarrollo se renderizan todas las variantes para poder compararlas con ?fondo=aspas|viento|cuadricula
+const variantes: Fondo[] = import.meta.env.DEV ? ["aspas", "viento", "cuadricula"] : [fondo];
+
 const ficha = [
   { k: "Origen", v: "Punto limpio y donaciones" },
+  { k: "Clasifican", v: "Escuelas técnicas de la región" },
   { k: "Destino A", v: "Generador eólico para el campo" },
-  { k: "Destino B", v: "Material para escuelas técnicas" },
+  { k: "Destino B", v: "Práctica en el taller escolar" },
   { k: "Descarte", v: "Ninguno" },
 ];
 ---
 
-<section id="inicio" class="bg-grid relative overflow-hidden bg-ink text-metal">
-  <div class="mx-auto grid max-w-6xl gap-14 px-5 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+<section id="inicio" class="relative overflow-hidden bg-ink text-metal">
+  {
+    variantes.map((v) => (
+      <div data-fondo={v} hidden={v !== fondo}>
+        <HeroBackground variante={v} />
+      </div>
+    ))
+  }
+  <div class="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-end">
     <div>
       <p class="label mb-6 text-primary">Recuperación de motores eléctricos</p>
       <h1 class="font-display text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl">
@@ -16,8 +34,9 @@ const ficha = [
       </h1>
       <p class="mt-8 max-w-xl text-lg leading-relaxed text-metal/80">
         Lavarropas, caminadoras, bombas y ventiladores tienen motores que todavía funcionan. Nosotros los rescatamos de la
-        chatarra: los que sirven se transforman en generadores eólicos para productores rurales, y los que no, se donan a
-        escuelas técnicas para que aprendan con ellos.
+        chatarra y las escuelas técnicas de la región los clasifican: los que sirven vuelven a nosotros y los convertimos
+        en generadores eólicos para productores rurales, y los que no, se quedan en el taller para que los estudiantes aprendan con
+        ellos.
       </p>
       <div class="mt-10 flex flex-wrap gap-4">
         <a href="#generador" class="btn-primary">Ver el generador →</a>
@@ -25,8 +44,8 @@ const ficha = [
       </div>
     </div>
 
-    <aside class="border-2 border-metal/40 bg-ink-soft">
-      <div class="flex items-center justify-between border-b-2 border-metal/40 px-5 py-3">
+    <aside class="overflow-hidden rounded-lg border border-metal/40 bg-ink-soft">
+      <div class="flex items-center justify-between border-b border-metal/40 px-5 py-3">
         <span class="label text-primary">Ficha del proyecto</span>
         <span class="label text-metal/50">N.º 001</span>
       </div>
@@ -42,5 +61,17 @@ const ficha = [
       </dl>
     </aside>
   </div>
-  <div class="bg-hatch h-4 border-t-2 border-primary text-primary"></div>
+  <div class="h-1 bg-primary"></div>
 </section>
+
+{
+  import.meta.env.DEV && (
+    <script is:inline>
+      (() => {
+        const pedido = new URLSearchParams(location.search).get("fondo");
+        if (!pedido) return;
+        document.querySelectorAll("[data-fondo]").forEach((el) => (el.hidden = el.dataset.fondo !== pedido));
+      })();
+    </script>
+  )
+}
