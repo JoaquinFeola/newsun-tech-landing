@@ -1,0 +1,35 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+
+const usos = [
+  { titulo: "Desarme y montaje", texto: "Conocer por dentro un motor real, pieza por pieza." },
+  { titulo: "Bobinado", texto: "Practicar el rebobinado de estatores y rotores." },
+  { titulo: "Mediciones", texto: "Continuidad, aislación y consumo con instrumental de taller." },
+  { titulo: "Proyectos propios", texto: "Usar piezas recuperadas en trabajos y ferias de ciencia." },
+];
+---
+
+<section id="escuelas" class="border-b-2 border-ink bg-paper-deep">
+  <div class="mx-auto grid max-w-6xl gap-14 px-5 py-24 lg:grid-cols-[1fr_1fr]">
+    <div>
+      <SectionHeader number="05" kicker="Impacto social" title="Lo que no se recupera, enseña.">
+        Las escuelas técnicas muchas veces no tienen presupuesto para comprar motores de práctica. Cada motor que no
+        sirve para un generador llega a un taller donde los estudiantes pueden desarmarlo, repararlo y aprender con
+        algo real en las manos.
+      </SectionHeader>
+      <a href="#sumate" data-tab="escuela" class="btn-primary">Soy de una escuela técnica →</a>
+    </div>
+
+    <div class="grid content-start gap-4 sm:grid-cols-2">
+      {
+        usos.map((u) => (
+          <div class="border-2 border-ink bg-paper p-5">
+            <span class="mb-3 block h-1.5 w-8 bg-primary" />
+            <h3 class="font-display text-lg font-bold">{u.titulo}</h3>
+            <p class="mt-1 text-sm leading-relaxed text-ink-muted">{u.texto}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

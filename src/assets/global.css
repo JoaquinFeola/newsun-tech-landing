@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/*
+ * ─── PALETA DE MARCA ─────────────────────────────────────────────
+ * Estos tres valores salen del logo. Si el logo cambia, modificá
+ * SOLO estas líneas: el resto de los colores del sitio se derivan
+ * de ellas automáticamente.
+ */
+:root {
+  --brand-steel: #d6dae0;    /* Engranaje (acero claro) */
+  --brand-amber: #ffb000;    /* Rayo (ámbar) */
+  --brand-graphite: #15171b; /* Fondo (grafito) */
+}
+
+/*
+ * ─── TOKENS SEMÁNTICOS (generan utilidades de Tailwind) ──────────
+ * Usá estas clases en los componentes: bg-ink, text-primary,
+ * border-line, bg-paper, etc. Nunca hex sueltos.
+ */
+@theme inline {
+  --color-primary: var(--brand-amber);
+  --color-primary-dark: color-mix(in oklab, var(--brand-amber) 78%, black);
+  --color-primary-soft: color-mix(in oklab, var(--brand-amber) 18%, white);
+
+  --color-metal: var(--brand-steel);
+  --color-metal-dark: color-mix(in oklab, var(--brand-steel) 70%, var(--brand-graphite));
+
+  --color-ink: var(--brand-graphite);
+  --color-ink-soft: color-mix(in oklab, var(--brand-graphite) 88%, white);
+  --color-ink-muted: color-mix(in oklab, var(--brand-graphite) 62%, white);
+
+  --color-paper: color-mix(in oklab, var(--brand-steel) 30%, #fbfaf7);
+  --color-paper-deep: color-mix(in oklab, var(--brand-steel) 65%, #fbfaf7);
+  --color-line: color-mix(in oklab, var(--brand-graphite) 22%, transparent);
+
+  --font-display: "Bitter", "Rockwell", Georgia, serif;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Etiqueta tipo ficha técnica */
+  .label {
+    @apply font-mono text-xs uppercase tracking-[0.18em];
+  }
+
+  /* Botones: rectos, con borde grueso y sombra "de imprenta" */
+  .btn-primary,
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 border-2 px-5 py-3 font-mono text-sm font-medium uppercase tracking-wider transition-transform duration-150;
+  }
+  .btn-primary:hover,
+  .btn-ghost:hover {
+    transform: translate(-2px, -2px);
+  }
+  .btn-primary:active,
+  .btn-ghost:active {
+    transform: translate(0, 0);
+  }
+  .btn-primary {
+    @apply border-ink bg-primary text-ink;
+    box-shadow: 4px 4px 0 var(--color-ink);
+  }
+  .btn-ghost {
+    @apply border-metal text-metal;
+  }
+  .btn-ghost:hover {
+    @apply bg-metal text-ink;
+  }
+
+  /* Campos de formulario */
+  .field {
+    @apply w-full border-2 border-ink bg-white px-3 py-2.5 text-ink outline-none transition-shadow;
+  }
+  .field:focus {
+    box-shadow: 4px 4px 0 var(--color-primary);
+  }
+
+  /* Texturas sobrias */
+  .bg-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklab, currentColor 14%, transparent) 0 1px,
+      transparent 1px 9px
+    );
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--brand-steel) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--brand-steel) 7%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}

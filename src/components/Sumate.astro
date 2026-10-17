@@ -1,0 +1,163 @@
+---
+/*
+ * Formularios DEMOSTRATIVOS: no envían ni guardan datos.
+ * Al enviar solo validan los campos y muestran el aviso de "recibido".
+ */
+const aparatos = ["Lavarropas", "Caminadora", "Bomba de agua", "Ventilador", "Herramienta eléctrica", "Otro"];
+---
+
+<section id="sumate" class="bg-ink text-metal">
+  <div class="mx-auto grid max-w-6xl gap-14 px-5 py-24 lg:grid-cols-[1fr_1.3fr]">
+    <div>
+      <div class="mb-4 flex items-center gap-3 text-primary">
+        <span class="label font-medium">07</span>
+        <span class="h-0.5 w-10 bg-primary"></span>
+        <span class="label">Sumate</span>
+      </div>
+      <h2 class="font-display text-3xl font-bold leading-tight md:text-5xl">¿Tenés un aparato viejo que vas a tirar?</h2>
+      <p class="mt-5 text-lg leading-relaxed text-metal/80">
+        Antes de dejarlo en la vereda, avisanos. Pasamos a buscarlo y le damos una segunda vida a su motor. Y si sos de
+        una escuela técnica, contanos qué necesitan para sus talleres.
+      </p>
+      <p class="label mt-10 border-l-2 border-primary/60 pl-4 leading-relaxed text-metal/50">
+        Formulario demostrativo:<br />los datos no se envían ni se guardan.
+      </p>
+    </div>
+
+    <div class="border-2 border-metal/40 bg-paper text-ink">
+      <div class="grid grid-cols-2 border-b-2 border-ink" role="tablist">
+        <button
+          role="tab"
+          data-tab-btn="donar"
+          aria-selected="true"
+          class="tab-btn label border-r-2 border-ink px-4 py-4 text-left">Donar un aparato</button
+        >
+        <button role="tab" data-tab-btn="escuela" aria-selected="false" class="tab-btn label px-4 py-4 text-left"
+          >Soy escuela técnica</button
+        >
+      </div>
+
+      <!-- Donación de aparato -->
+      <form data-tab-panel="donar" data-mensaje="Coordinaremos con vos el retiro del aparato." class="grid gap-5 p-6 md:p-8 sm:grid-cols-2">
+        <label class="grid gap-1.5 sm:col-span-2">
+          <span class="label">Nombre y apellido</span>
+          <input name="nombre" required class="field" autocomplete="name" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Teléfono o email</span>
+          <input name="contacto" required class="field" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Localidad</span>
+          <input name="localidad" required class="field" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Tipo de aparato</span>
+          <select name="aparato" required class="field">
+            <option value="">Elegí una opción</option>
+            {aparatos.map((a) => <option>{a}</option>)}
+          </select>
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">¿Todavía enciende?</span>
+          <select name="estado" class="field">
+            <option>No sé</option>
+            <option>Sí</option>
+            <option>No</option>
+          </select>
+        </label>
+        <label class="grid gap-1.5 sm:col-span-2">
+          <span class="label">Comentarios (opcional)</span>
+          <textarea name="comentarios" rows="3" class="field resize-y"></textarea>
+        </label>
+        <button type="submit" class="btn-primary justify-self-start sm:col-span-2">Enviar aviso</button>
+      </form>
+
+      <!-- Solicitud de escuela técnica -->
+      <form
+        data-tab-panel="escuela"
+        data-mensaje="Te contactaremos cuando tengamos motores disponibles para tu escuela."
+        class="grid gap-5 p-6 md:p-8 sm:grid-cols-2"
+        hidden
+      >
+        <label class="grid gap-1.5 sm:col-span-2">
+          <span class="label">Nombre de la escuela</span>
+          <input name="escuela" required class="field" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Persona de contacto</span>
+          <input name="responsable" required class="field" autocomplete="name" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Email</span>
+          <input name="email" type="email" required class="field" autocomplete="email" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Localidad</span>
+          <input name="localidad" required class="field" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="label">Cantidad aproximada</span>
+          <input name="cantidad" type="number" min="1" class="field" />
+        </label>
+        <label class="grid gap-1.5 sm:col-span-2">
+          <span class="label">¿Para qué los usarían?</span>
+          <textarea name="uso" rows="3" required class="field resize-y"></textarea>
+        </label>
+        <button type="submit" class="btn-primary justify-self-start sm:col-span-2">Enviar solicitud</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<dialog id="recibido" class="m-auto w-[min(28rem,calc(100%-2rem))] border-2 border-ink bg-paper p-0 text-ink backdrop:bg-ink/70">
+  <div class="flex items-center gap-3 border-b-2 border-ink bg-primary px-6 py-3">
+    <span class="grid h-6 w-6 place-items-center border-2 border-ink bg-paper font-mono text-sm">✓</span>
+    <span class="label font-medium">Recibido</span>
+  </div>
+  <div class="p-6">
+    <p class="font-display text-2xl font-bold">¡Gracias!</p>
+    <p id="recibido-msg" class="mt-2 leading-relaxed text-ink-muted"></p>
+    <form method="dialog" class="mt-6">
+      <button class="btn-primary">Cerrar</button>
+    </form>
+  </div>
+</dialog>
+
+<style>
+  .tab-btn[aria-selected="true"] {
+    background: var(--color-ink);
+    color: var(--color-primary);
+  }
+  .tab-btn[aria-selected="false"]:hover {
+    background: var(--color-paper-deep);
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-tab-btn]");
+  const panels = document.querySelectorAll<HTMLFormElement>("[data-tab-panel]");
+  const dialog = document.getElementById("recibido") as HTMLDialogElement;
+  const msg = document.getElementById("recibido-msg")!;
+
+  function showTab(name: string) {
+    buttons.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tabBtn === name)));
+    panels.forEach((p) => (p.hidden = p.dataset.tabPanel !== name));
+  }
+
+  buttons.forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tabBtn!)));
+
+  // Enlaces externos que abren una pestaña concreta (p. ej. "Soy de una escuela técnica")
+  document.querySelectorAll<HTMLAnchorElement>("a[data-tab]").forEach((a) =>
+    a.addEventListener("click", () => showTab(a.dataset.tab!)),
+  );
+
+  panels.forEach((form) =>
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      msg.textContent = form.dataset.mensaje ?? "";
+      form.reset();
+      dialog.showModal();
+    }),
+  );
+</script>

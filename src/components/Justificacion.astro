@@ -1,0 +1,55 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+
+const criterios = [
+  {
+    titulo: "Viabilidad técnica",
+    puntos: [
+      "Motores disponibles gratis en puntos limpios.",
+      "Piezas impresas en 3D, fáciles de reemplazar.",
+      "Electrónica de bajo costo y amplia documentación (ESP32, LoRa).",
+    ],
+  },
+  {
+    titulo: "Impacto social y económico",
+    puntos: [
+      "Menos chatarra electrónica en la región.",
+      "Protección de cultivos de pequeños productores.",
+      "Material de práctica gratuito para escuelas técnicas.",
+    ],
+  },
+  {
+    titulo: "Facilidad de adopción",
+    puntos: [
+      "El productor solo recibe una alarma en su casa.",
+      "No requiere internet ni conexión a la red eléctrica en el campo.",
+      "Mantenimiento simple con herramientas comunes.",
+    ],
+  },
+];
+---
+
+<section id="por-que" class="border-b-2 border-ink">
+  <div class="mx-auto max-w-6xl px-5 py-24">
+    <SectionHeader number="06" kicker="Justificación" title="Por qué elegimos a los productores rurales." />
+
+    <div class="grid gap-0.5 border-2 border-ink bg-ink md:grid-cols-3">
+      {
+        criterios.map((c, i) => (
+          <div class="bg-white p-7">
+            <span class="label text-primary-dark">Criterio {i + 1}</span>
+            <h3 class="mt-2 font-display text-2xl font-bold">{c.titulo}</h3>
+            <ul class="mt-5 space-y-3">
+              {c.puntos.map((p) => (
+                <li class="flex gap-3 leading-relaxed text-ink-muted">
+                  <span class="mt-2 h-2 w-2 shrink-0 bg-primary" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

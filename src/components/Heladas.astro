@@ -1,0 +1,82 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+
+const sensores = ["Temperatura", "Humedad", "Punto de rocío"];
+---
+
+<section id="heladas" class="border-b-2 border-ink">
+  <div class="mx-auto max-w-6xl px-5 py-24">
+    <SectionHeader number="04" kicker="Caso de uso" title="Alerta temprana de heladas para productores.">
+      Una helada puede arruinar una cosecha en una sola noche. Instalamos el generador en el campo, junto a una estación
+      que mide el clima y avisa por radio al productor antes de que la temperatura llegue a cero, para que tenga tiempo
+      de cubrir, regar o calefaccionar.
+    </SectionHeader>
+
+    <!-- Diagrama del sistema -->
+    <div class="overflow-x-auto">
+      <div class="grid min-w-[44rem] grid-cols-[1fr_auto_1.3fr_auto_1fr] items-stretch">
+        <!-- En el campo -->
+        <div class="border-2 border-ink bg-ink p-5 text-metal">
+          <p class="label text-primary">En el campo</p>
+          <p class="mt-3 font-display text-lg font-bold">Generador eólico</p>
+          <p class="mt-1 text-sm text-metal/70">+ regulador de carga</p>
+          <div class="mt-4 border-t border-metal/20 pt-4">
+            <p class="font-display text-lg font-bold">Batería</p>
+            <p class="mt-1 text-sm text-metal/70">Energía de día y de noche</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center px-2" aria-hidden="true">
+          <span class="label mb-1 text-ink-muted">energía</span>
+          <span class="font-mono text-2xl text-primary-dark">⟶</span>
+        </div>
+
+        <div class="border-2 border-ink bg-white p-5">
+          <p class="label text-primary-dark">Nodo emisor</p>
+          <p class="mt-3 font-display text-lg font-bold">ESP32 + módulo LoRa</p>
+          <p class="mt-1 text-sm text-ink-muted">Mide cada pocos minutos y envía el dato por radio.</p>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {sensores.map((s) => <li class="label border border-ink px-2 py-1">{s}</li>)}
+          </ul>
+        </div>
+
+        <div class="flex flex-col items-center justify-center px-2" aria-hidden="true">
+          <span class="label mb-1 text-ink-muted">radio LoRa</span>
+          <span class="font-mono text-2xl tracking-[-0.2em] text-primary-dark">)))</span>
+        </div>
+
+        <div class="border-2 border-dashed border-ink bg-paper-deep p-5">
+          <p class="label text-ink-muted">En la casa</p>
+          <p class="mt-3 font-display text-lg font-bold">Receptor</p>
+          <p class="mt-1 text-sm text-ink-muted">ESP32 + LoRa con pantalla y alarma sonora.</p>
+          <p class="mt-4 border-t border-line pt-4 text-sm text-ink-muted">
+            Alimentado por el productor (enchufe o cargador USB).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-3">
+      <div>
+        <h3 class="font-display text-xl font-bold">¿Por qué LoRa?</h3>
+        <p class="mt-2 leading-relaxed text-ink-muted">
+          Es una radio de muy bajo consumo y largo alcance que no necesita internet ni señal de celular, algo habitual en
+          zonas rurales.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-display text-xl font-bold">¿Por qué eólico?</h3>
+        <p class="mt-2 leading-relaxed text-ink-muted">
+          Las heladas ocurren de noche, sin sol. El viento complementa la carga de la batería cuando un panel solar no
+          puede hacerlo.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-display text-xl font-bold">¿Qué gana el productor?</h3>
+        <p class="mt-2 leading-relaxed text-ink-muted">
+          Horas de anticipación para proteger el cultivo, sin depender de la red eléctrica ni de pronósticos generales.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

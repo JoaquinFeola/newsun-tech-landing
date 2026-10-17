@@ -1,0 +1,75 @@
+---
+import Logo from "./Logo.astro";
+
+const links = [
+  { href: "#problema", label: "Problema" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#generador", label: "Generador" },
+  { href: "#heladas", label: "Uso en el campo" },
+  { href: "#escuelas", label: "Escuelas" },
+];
+---
+
+<header class="sticky top-0 z-40 border-b-2 border-primary bg-ink text-metal">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-3">
+    <a href="#inicio" class="flex items-center gap-3">
+      <Logo class="h-10 w-10" />
+      <span class="font-display text-xl font-bold tracking-tight">
+        New<span class="text-primary">Sun</span>
+      </span>
+    </a>
+
+    <ul class="hidden items-center gap-7 lg:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} class="label text-metal/80 transition-colors hover:text-primary">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a href="#sumate" class="btn-primary hidden px-4 py-2 shadow-none sm:inline-flex">Donar un aparato</a>
+
+    <button
+      id="menu-btn"
+      class="border-2 border-metal/60 p-2 lg:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+    >
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <ul id="menu-mobile" class="hidden border-t border-metal/20 px-5 pb-4 lg:hidden">
+    {
+      links.concat({ href: "#sumate", label: "Sumate" }).map((l) => (
+        <li>
+          <a href={l.href} class="label block border-b border-metal/10 py-3 hover:text-primary">
+            {l.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</header>
+
+<script>
+  const btn = document.getElementById("menu-btn")!;
+  const menu = document.getElementById("menu-mobile")!;
+  btn.addEventListener("click", () => {
+    const open = menu.classList.toggle("hidden") === false;
+    btn.setAttribute("aria-expanded", String(open));
+  });
+  menu.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      btn.setAttribute("aria-expanded", "false");
+    }),
+  );
+</script>
