@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # wrangler
 .wrangler/
+
+# Video original sin comprimir (pesa demasiado para Cloudflare y GitHub)
+video-original/
