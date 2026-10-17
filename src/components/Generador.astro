@@ -11,6 +11,9 @@ import SectionHeader from "./SectionHeader.astro";
 const VIDEO_SRC = "/video/presentacion.mp4";
 const POSTER_SRC = "/video/presentacion-poster.jpg";
 
+// Animación corta (5 s) del modelo 3D del rotor y el motor; se reproduce en bucle y sin sonido
+const MODELO_SRC = "/video/modelo-3d.mp4";
+
 const partes = [
   { n: "A", nombre: "Aspas verticales", detalle: "Giran alrededor de un eje vertical y captan el viento venga de donde venga." },
   { n: "B", nombre: "Motor recuperado", detalle: "Funciona al revés: al girar, genera electricidad." },
@@ -49,29 +52,51 @@ const partes = [
           </div>
         </div>
         <figcaption class="label mt-3 flex flex-wrap justify-between gap-x-4 gap-y-1 text-metal/50">
-          <span>Video — Conocé NewSun Tech</span>
+          <span>Fig. 1 — Conocé NewSun Tech</span>
           <span>Con sonido</span>
         </figcaption>
       </figure>
 
-      <div>
-        <h3 class="label mb-4 text-primary">Partes del generador</h3>
-        <ul class="border-t border-metal/30">
-          {
-            partes.map((p) => (
-              <li class="flex gap-4 border-b border-metal/15 py-4">
-                <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-primary font-mono text-sm text-primary">
-                  {p.n}
-                </span>
-                <div>
-                  <p class="font-display font-bold">{p.nombre}</p>
-                  <p class="text-sm leading-relaxed text-metal/70">{p.detalle}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <figure class="flex flex-col">
+        <!--
+          El render tiene mucho fondo vacío y el molino no está centrado:
+          se recorta, se amplía y se corre el encuadre hacia la derecha.
+          En pantallas grandes toma la misma altura que el video de presentación.
+        -->
+        <div class="relative aspect-square overflow-hidden rounded-lg border border-metal/40 bg-[#c3cad3] sm:aspect-[4/3] lg:aspect-auto lg:flex-1">
+          <video
+            id="modelo-video"
+            class="absolute inset-0 h-full w-full scale-125 object-cover object-[67%_50%]"
+            src={MODELO_SRC}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-label="Animación del modelo 3D: el rotor de aspas helicoidales gira sobre el eje conectado al motor"
+          ></video>
+        </div>
+        <figcaption class="label mt-3 text-metal/50">Fig. 2 — Modelo 3D: aspas y motor</figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-10 md:mt-14">
+      <h3 class="label mb-4 text-primary">Partes del generador</h3>
+      <ul class="border-t border-metal/30 lg:grid lg:grid-cols-5 lg:gap-6">
+        {
+          partes.map((p) => (
+            <li class="flex gap-4 border-b border-metal/15 py-4 lg:flex-col lg:gap-3 lg:border-b-0 lg:pt-6">
+              <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-primary font-mono text-sm text-primary">
+                {p.n}
+              </span>
+              <div>
+                <p class="font-display font-bold">{p.nombre}</p>
+                <p class="text-sm leading-relaxed text-metal/70">{p.detalle}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>
@@ -82,4 +107,12 @@ const partes = [
   const hide = () => (placeholder.hidden = true);
   if (video.readyState >= 1) hide();
   video.addEventListener("loadedmetadata", hide);
+
+  // Con "reducir movimiento" activado, la animación no arranca sola
+  const modelo = document.getElementById("modelo-video") as HTMLVideoElement;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    modelo.autoplay = false;
+    modelo.pause();
+    modelo.controls = true;
+  }
 </script>
